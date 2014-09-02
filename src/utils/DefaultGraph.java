@@ -53,7 +53,7 @@ public class DefaultGraph implements Graph {
 			labels[i]=i+"";
 		}
 		
-		this.edgeQueues=new _EdgeStaticQueue[numVertexes];
+		this.edgeQueues=new _EdgeStaticQueue[numVertexes];//邻接表
 		for(int i=0;i<numVertexes;i++){
 			edgeQueues[i]=new _EdgeStaticQueue();
 			edgeQueues[i].first=edgeQueues[i].last=_Edge.NullEdge;
@@ -95,14 +95,14 @@ public class DefaultGraph implements Graph {
 	}
 	
 	@Override
-	public void setEdge(int from, int to,int weight){
+	public void setEdge(int from, int to,int weight){//add edge
 		//no ring here
 		if(from<0||from>=numVertexes||to<0||to>=numVertexes||weight<0||from==to)throw new IllegalArgumentException();
 		_Edge edge=new _Edge(from,to,weight);
 		edge.nextEdge=_Edge.NullEdge;
-		if(edgeQueues[from].first==_Edge.NullEdge)
+		if(edgeQueues[from].first==_Edge.NullEdge)//若为空，加入
 			edgeQueues[from].first=edge;
-		else
+		else //若不为空，加入队尾
 			edgeQueues[from].last.nextEdge=edge;
 		edgeQueues[from].last=edge;
 		
@@ -143,7 +143,7 @@ public class DefaultGraph implements Graph {
 				System.out.println("cluster==========:"+clustercnt+"\n");
 				
 				do_DFS(i,visitor);
-				if(this.cnt>getEdgeNum(i))
+				if(this.cnt>getEdgeNum(i))//DFS遍历结果大于节点的边数，考虑为异常
 					visitor.println("cnt:"+this.cnt+" "+getEdgeNum(i)+"\n");
 				this.cnt=0;
 				clustercnt++;

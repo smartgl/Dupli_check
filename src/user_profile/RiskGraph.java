@@ -32,8 +32,8 @@ public class RiskGraph {
 	     int cnt=0;
 	     while(newdb.rs.next()) {
 	
-	     key=newdb.rs.getString(keystr);
-	     value = newdb.rs.getString(valstr);
+	     key=newdb.rs.getString(keystr);    //user_mobile
+	     value = newdb.rs.getString(valstr);    
 	
 	     GIdMap.put(key, cnt);
 	     out.write(cnt+"\t"+"mobile"+"\t"+key+"\n");
@@ -46,7 +46,7 @@ public class RiskGraph {
 			
 			for(int i=0;i<valarr.length;i++){
 				if(!GIdMap.containsKey(valarr[i])){
-					GIdMap.put(valarr[i], cnt);
+					GIdMap.put(valarr[i], cnt); //rid
 					out.write(cnt+"\t"+"rid"+"\t"+valarr[i]+"\n");
 					cnt++;
 					
@@ -75,6 +75,7 @@ public class RiskGraph {
 			for(int i=0;i<valarr.length;i++){
 				//System.out.println(rg.GIdMap.get(key)+" "+rg.GIdMap.get(valarr[i]));
 				if((!key.isEmpty())&&(!valarr[i].isEmpty())){
+					//加边、无向
 					g.setEdge(rg.GIdMap.get(key), rg.GIdMap.get(valarr[i]), 0);
 					g.setEdge(rg.GIdMap.get(valarr[i]),rg.GIdMap.get(key),0);
 				}

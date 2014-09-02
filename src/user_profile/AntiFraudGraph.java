@@ -18,7 +18,7 @@ public class AntiFraudGraph {
 		HashMap<String,String> namemap= new HashMap<String,String>();
 		try {
 			
-			String data2 = br2.readLine();//�?次读入一行，直到读入null为文件结�?
+			String data2 = br2.readLine();//�?次读入一行，直到读入null为文件结�?
 			 while(data2 !=null){
 				 //System.out.println(data2);
 				 String[] a=data2.split("\t",-1);
@@ -36,7 +36,7 @@ public class AntiFraudGraph {
 		    	 dworders.put("mobile\t"+newdb.rs.getString("user_mobile"), newdb.rs.getString("status"));
 		     }
 			
-			String data1 = br1.readLine();//�?次读入一行，直到读入null为文件结�?
+			String data1 = br1.readLine();//�?次读入一行，直到读入null为文件结�?
 			ArrayList<String> tmparr= new ArrayList<String>();
 			 while(data1 !=null){
 				 String[] a= data1.split("\n",-1);
@@ -45,7 +45,7 @@ public class AntiFraudGraph {
 				 if(data1.contains("cluster"))
 					 tmparr.clear();
 				 else{
-					 if(data1.contains("cnt")){
+					 if(data1.contains("cnt")){ //异常节点
 					 	clusterset.add(tmparr);
 					 	for(String str: tmparr){
 					 		System.out.println(str);
